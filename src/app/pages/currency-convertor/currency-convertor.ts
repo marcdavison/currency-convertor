@@ -1,5 +1,5 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
-import {form, required, validate, FormField } from '@angular/forms/signals';
+import {form, required, validate, FormField, submit } from '@angular/forms/signals';
 import { CurrencyService } from './services/currency';
 import { SelectEl } from '../../common/components/form/select/select';
 import { InputEl } from '../../common/components/form/input/input';
@@ -38,9 +38,10 @@ export class CurrencyConvertor implements OnInit {
     required(entries.from, { message: "You must select a currency to convert from"}),
     required(entries.to, { message: "You must select a currency to convert to"}),
     required(entries.amount, { message: "You must enter an amount to convert"}),
-    validate(entries.from, ({value, valueOf}) => {
-      if ((value() === valueOf(entries.to) && valueOf(entries.to) !== "Select a currency")) {
-        console.log("value is ..", valueOf(entries.to));
+    validate(entries.to, ({value, valueOf}) => {
+      console.log("value1 is ..", valueOf(entries.from));
+      if ((value() === valueOf(entries.from) && valueOf(entries.from) !== "")) {
+        console.log("value2 is ..", valueOf(entries.from));
         return {
           kind: "Value check",
           message: "Your currencies must be different"
@@ -70,7 +71,16 @@ export class CurrencyConvertor implements OnInit {
   */
   public onSubmit(event: Event) {
     event.preventDefault();
-    console.log("submit")
+    // Carry out clientside checks with submit method
+    submit(this.currencyForm, async f => {
+      // Form valid, get value and submit to service
+      const value = f().value();
+      this.isSubmitting.set(true);
+      this.service.convertAmount(value.from, value.to, value.amount).subscribe((result: any) => {
+        this.isSubmitting.set(false);
+        this.convertedAmount.set(result.value.toFixed(2));
+      });
+    });
   }
 
   public handleChange(target: any, e: string) {

@@ -1,33 +1,33 @@
 <h2>Currency Convertor</h2>
 <p>Use the form below to view the current exchange rate between a range of currencies</p>
 <form (submit)="onSubmit($event)">
-    <div>
-        <app-select
-            label="From"
-            [value]="currencyForm.from().value()"
-            [options]="currencies()"
-            [errors]="currencyForm.from().errors()"
-            (valueChange)="handleChange('from', $event)"
-        ></app-select>
-    </div>
-    <div>
-        <app-select
-            label="To"
-            [value]="currencyForm.to().value()"
-            [options]="currencies()"
-            [errors]="currencyForm.to().errors()"
-            (valueChange)="handleChange('to', $event)"
-        ></app-select>
-    </div>
-    <div>
-        <app-input
-            label="Amount"
-            [value]="currencyForm.amount().value()"
-            [errors]="currencyForm.amount().errors()"
-            (valueChange)="handleChange('amount', $event)"
-            (keyDown)="onAmountKeyDown($event)"
-        ></app-input>
-    </div>
+    <app-select
+        label="From"
+        [value]="currencyForm.from().value()"
+        [options]="currencies()"
+        [errors]="currencyForm.from().errors()"
+        [touched]="currencyForm.from().touched()"
+        (valueChange)="handleChange('from', $event)"
+        (blur)="currencyForm.from().markAsTouched()"
+    ></app-select>
+    <app-select
+        label="To"
+        [value]="currencyForm.to().value()"
+        [options]="currencies()"
+        [errors]="currencyForm.to().errors()"
+        (valueChange)="handleChange('to', $event)"
+        [touched]="currencyForm.to().touched()"        
+        (blur)="currencyForm.to().markAsTouched()"
+    ></app-select>
+    <app-input
+        label="Amount"
+        [value]="currencyForm.amount().value()"
+        [errors]="currencyForm.amount().errors()"
+        [touched]="currencyForm.amount().touched()"
+        (valueChange)="handleChange('amount', $event)"
+        (keyDown)="onAmountKeyDown($event)"
+        (blur)="currencyForm.amount().markAsTouched()"
+    ></app-input>
     <div>
         <app-button
         [disabled]="currencyForm().invalid() || isSubmitting()"
@@ -36,6 +36,13 @@
         [valueText]="'Convert'"
         [type]="'submit'"
         ></app-button>
+    </div>
+    <div class="result">
+    @if (convertedAmount()) {
+        <p>
+            The {{ currencyForm().value().amount }} {{ currencyForm().value().from }} converts to {{ convertedAmount() }} {{ currencyForm().value().to }}
+        </p>
+    }
     </div>
 
 </form>

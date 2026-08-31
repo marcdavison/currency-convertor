@@ -11,8 +11,10 @@ export class SelectEl {
   @Input() value!: string;
   @Input() options: string[] = [];
   @Input() errors: any[] | null = null;
+  @Input() touched!: boolean;
 
   @Output() valueChange = new EventEmitter<string>();
+  @Output() blur = new EventEmitter<void>();
 
   onChange(event: any) {
     this.valueChange.emit(event.target.value);

@@ -15,6 +15,13 @@ footer {
     height: 200px;
 }
 
+.errorContainer {
+    color: red;
+    li {
+        list-style-type: none;
+    }
+}
+
 app-root {
     display: flex;
     flex-direction: column;
