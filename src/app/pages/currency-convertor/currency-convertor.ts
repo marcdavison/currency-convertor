@@ -1,5 +1,6 @@
-import { Component, signal, inject } from '@angular/core';
-import {form, required, validate } from '@angular/forms/signals';
+import { Component, signal, inject, OnInit } from '@angular/core';
+import {form, required, validate, FormField } from '@angular/forms/signals';
+import { CurrencyService } from './services/currency';
 
 interface Currency {
   from: string;
@@ -11,9 +12,10 @@ interface Currency {
   selector: 'app-currency-convertor',
   templateUrl: './currency-convertor.html',
   styleUrl: './currency-convertor.scss',
+  imports: [FormField]
 })
 
-export class CurrencyConvertor {
+export class CurrencyConvertor implements OnInit {
   // declare signals
   currencyModel = signal<Currency>({
     from: "",
@@ -44,4 +46,26 @@ export class CurrencyConvertor {
       return null;
     })
   });
+
+  ngOnInit(): void {
+    this.callInCurrency();
+  }
+
+  /*
+    Function to pull in the currencys for the drop down fields
+    @Input: void, @Output: void
+  */
+  private callInCurrency() {
+    this.service.getAllCurrencies().subscribe(res => {
+      this.currencies.set(Object.values(res));
+    });
+  }
+
+  /*
+    Function to handle the form submission
+    @Input: Form submission event; @Output: void
+  */
+  public onSubmit(event: Event) {
+    event.preventDefault();
+  }
 }

@@ -1,2 +1,13 @@
 <h2>Currency Convertor</h2>
 <p>Use the form below to view the current exchange rate between a range of currencies</p>
+<form (submit)="onSubmit($event)">
+    <div>
+        <label>From</label>
+        <select [formField]="currencyForm.from">
+            <option value="">Select a currency</option>
+            @for (currency of currencies(); track $index) {
+                <option value="{{ currency}}">{{ currency }}</option>
+            }
+        </select>
+    </div>
+</form>
