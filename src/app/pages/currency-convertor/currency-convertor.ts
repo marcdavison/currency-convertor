@@ -1,6 +1,7 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
 import {form, required, validate, FormField } from '@angular/forms/signals';
 import { CurrencyService } from './services/currency';
+import { SelectEl } from '../../common/components/form/select/select';
 
 interface Currency {
   from: string;
@@ -12,7 +13,7 @@ interface Currency {
   selector: 'app-currency-convertor',
   templateUrl: './currency-convertor.html',
   styleUrl: './currency-convertor.scss',
-  imports: [FormField]
+  imports: [SelectEl]
 })
 
 export class CurrencyConvertor implements OnInit {
@@ -67,5 +68,9 @@ export class CurrencyConvertor implements OnInit {
   */
   public onSubmit(event: Event) {
     event.preventDefault();
+  }
+
+  public handleChange(target: any, e: string) {
+    this.currencyModel.update(m => ({ ...m, [target]: e }))
   }
 }
