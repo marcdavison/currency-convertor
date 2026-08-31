@@ -11,6 +11,7 @@ export class SelectEl {
   @Input() value!: string;
   @Input() options: string[] = [];
   @Input() errors: any[] | null = null;
+  @Input() touched!: boolean;
 
   @Output() valueChange = new EventEmitter<string>();
 

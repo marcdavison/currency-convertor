@@ -1,5 +1,5 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
-import {form, required, validate, FormField } from '@angular/forms/signals';
+import {form, required, validate, FormField, submit } from '@angular/forms/signals';
 import { CurrencyService } from './services/currency';
 import { SelectEl } from '../../common/components/form/select/select';
 import { InputEl } from '../../common/components/form/input/input';
@@ -70,7 +70,16 @@ export class CurrencyConvertor implements OnInit {
   */
   public onSubmit(event: Event) {
     event.preventDefault();
-    console.log("submit")
+    // Carry out clientside checks with submit method
+    submit(this.currencyForm, async f => {
+      // Form valid, get value and submit to service
+      const value = f().value();
+      this.isSubmitting.set(true);
+      this.service.convertAmount(value.from, value.to, value.amount).subscribe((result: any) => {
+        this.isSubmitting.set(false);
+        this.convertedAmount.set(result.value.toFixed(2));
+      });
+    });
   }
 
   public handleChange(target: any, e: string) {

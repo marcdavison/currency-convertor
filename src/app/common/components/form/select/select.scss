@@ -1,9 +1,17 @@
+div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 12px 0px;
+    align-items: center;
+}
+
 label {
     margin: 0px 16px 0px 0px;
     width: 30%;
 }
+
 select {
     padding: 6px 12px;
     border-radius: 8px;
-    width: 100%;
 }

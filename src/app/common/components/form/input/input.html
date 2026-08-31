@@ -5,10 +5,11 @@
         [value]="value"
         (input)="valueChange.emit($event.target.value)"
         (keydown)="keyDown.emit($event)"
+        (blur)="blur.emit()"
     />
 </div>
 <div>
-    @if (errors?.length) {
+    @if (errors?.length && touched) {
         <ul>
         @for (err of errors; track $index) {
             <li>{{ err.message }}</li>

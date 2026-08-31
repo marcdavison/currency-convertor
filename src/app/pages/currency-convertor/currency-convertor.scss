@@ -1,10 +1,11 @@
 form {
     display: flex;
     flex-direction: column;
+    max-width: 500px;
     div {
         margin: 12px;
-        width: 70%;
-        max-width: 300px;
+        width: 100%;
+        max-width: 400px;
         display: flex;
         justify-content: space-between;
     }
@@ -16,5 +17,9 @@ form {
             margin-left: 12px;
             list-style-type: none;
         }
+    }
+
+    div.result {
+        height: 70px;
     }
 }
