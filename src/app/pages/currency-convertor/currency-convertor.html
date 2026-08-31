@@ -8,14 +8,16 @@
         [errors]="currencyForm.from().errors()"
         [touched]="currencyForm.from().touched()"
         (valueChange)="handleChange('from', $event)"
+        (blur)="currencyForm.from().markAsTouched()"
     ></app-select>
     <app-select
         label="To"
         [value]="currencyForm.to().value()"
         [options]="currencies()"
         [errors]="currencyForm.to().errors()"
-        [touched]="currencyForm.to().touched()"
         (valueChange)="handleChange('to', $event)"
+        [touched]="currencyForm.to().touched()"        
+        (blur)="currencyForm.to().markAsTouched()"
     ></app-select>
     <app-input
         label="Amount"

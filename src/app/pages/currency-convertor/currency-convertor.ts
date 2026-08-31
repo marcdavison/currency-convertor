@@ -38,9 +38,10 @@ export class CurrencyConvertor implements OnInit {
     required(entries.from, { message: "You must select a currency to convert from"}),
     required(entries.to, { message: "You must select a currency to convert to"}),
     required(entries.amount, { message: "You must enter an amount to convert"}),
-    validate(entries.from, ({value, valueOf}) => {
-      if ((value() === valueOf(entries.to) && valueOf(entries.to) !== "Select a currency")) {
-        console.log("value is ..", valueOf(entries.to));
+    validate(entries.to, ({value, valueOf}) => {
+      console.log("value1 is ..", valueOf(entries.from));
+      if ((value() === valueOf(entries.from) && valueOf(entries.from) !== "")) {
+        console.log("value2 is ..", valueOf(entries.from));
         return {
           kind: "Value check",
           message: "Your currencies must be different"

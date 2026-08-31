@@ -14,6 +14,7 @@ export class SelectEl {
   @Input() touched!: boolean;
 
   @Output() valueChange = new EventEmitter<string>();
+  @Output() blur = new EventEmitter<void>();
 
   onChange(event: any) {
     this.valueChange.emit(event.target.value);

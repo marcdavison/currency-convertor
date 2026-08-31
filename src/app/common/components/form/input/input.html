@@ -8,7 +8,7 @@
         (blur)="blur.emit()"
     />
 </div>
-<div>
+<div class="errorContainer">
     @if (errors?.length && touched) {
         <ul>
         @for (err of errors; track $index) {

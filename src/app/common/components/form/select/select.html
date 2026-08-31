@@ -1,13 +1,13 @@
 <div>
     <label>{{ label }}</label>
-    <select [value]="value" (change)="onChange($event)">
+    <select [value]="value" (change)="onChange($event)" (blur)="blur.emit()">
         <option value="">Select a currency</option>
         @for (item of options; track $index) {
         <option [value]="item">{{ item }}</option>
         }
     </select>
 </div>
-<div>
+<div class="errorContainer">
 @if (errors?.length && touched) {
     <ul>
     @for (err of errors; track $index) {
