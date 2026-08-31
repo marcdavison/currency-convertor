@@ -10,3 +10,7 @@ button {
     text-transform: uppercase;
     min-width: 300px;
 }
+
+button:disabled {
+    opacity: 0.6;
+}
