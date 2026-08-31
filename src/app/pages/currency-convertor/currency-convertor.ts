@@ -28,6 +28,7 @@ export class CurrencyConvertor implements OnInit {
 
   public convertedAmount = signal(null);
   public isSubmitting = signal(false);
+  public isConversionError = signal(false);
   public currencies = signal<any>([]);
 
     // inject service
@@ -60,8 +61,14 @@ export class CurrencyConvertor implements OnInit {
     @Input: void, @Output: void
   */
   private callInCurrency() {
-    this.service.getAllCurrencies().subscribe(res => {
-      this.currencies.set(Object.values(res));
+    this.service.getAllCurrencies().subscribe({
+      next: (result: any) => {
+        this.currencies.set(Object.values(result));
+      },
+      error: () => {
+        // provide fallback
+        this.currencies.set(["GBP, USD, EUR"]);
+      }
     });
   }
 
@@ -76,10 +83,19 @@ export class CurrencyConvertor implements OnInit {
       // Form valid, get value and submit to service
       const value = f().value();
       this.isSubmitting.set(true);
-      this.service.convertAmount(value.from, value.to, value.amount).subscribe((result: any) => {
-        this.isSubmitting.set(false);
-        this.convertedAmount.set(result.value.toFixed(2));
-      });
+      this.service.convertAmount(value.from, value.to, value.amount)
+        .subscribe({
+          next: (result: any) => {
+            this.isSubmitting.set(false);
+            this.convertedAmount.set(result.value.toFixed(2));
+            this.isConversionError.set(false);
+          },
+          error: () => {
+            this.isSubmitting.set(false);
+            this.isConversionError.set(true);
+            this.convertedAmount.set(null);
+          }
+        });
     });
   }
 
