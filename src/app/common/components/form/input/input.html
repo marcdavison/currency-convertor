@@ -1,1 +1,18 @@
-<p>input works!</p>
+<div>
+    <label>{{ label }}</label>
+    <input 
+        type="text"
+        [value]="value"
+        (input)="valueChange.emit($event.target.value)"
+        (keydown)="keyDown.emit($event)"
+    />
+</div>
+<div>
+    @if (errors?.length) {
+        <ul>
+        @for (err of errors; track $index) {
+            <li>{{ err.message }}</li>
+        }
+        </ul>
+    }
+</div>

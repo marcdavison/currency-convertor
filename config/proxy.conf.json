@@ -1,0 +1,8 @@
+{
+  "/v1": {
+    "target": "https://api.currencybeacon.com",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

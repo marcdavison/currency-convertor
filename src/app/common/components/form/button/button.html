@@ -1,1 +1,7 @@
-<p>button works!</p>
+<button type="{{type}}" [disabled]="disabled">
+    @if (loading) {
+    {{loadingText}}
+    } @else {
+    {{valueText}}
+    }
+</button>

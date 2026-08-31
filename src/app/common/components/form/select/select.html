@@ -1,1 +1,15 @@
-<p>select works!</p>
+<label>{{ label }}</label>
+<select [value]="value" (change)="onChange($event)">
+    <option value="">Select a currency</option>
+    @for (item of options; track $index) {
+    <option [value]="item">{{ item }}</option>
+    }
+</select>
+
+@if (errors?.length) {
+    <ul>
+    @for (err of errors; track $index) {
+        <li>{{ err.message }}</li>
+    }
+    </ul>
+}

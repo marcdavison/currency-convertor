@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-select',
@@ -6,6 +6,16 @@ import { Component } from '@angular/core';
   templateUrl: './select.html',
   styleUrl: './select.scss',
 })
-export class Select {
+export class SelectEl {
+  @Input() label!: string;
+  @Input() value!: string;
+  @Input() options: string[] = [];
+  @Input() errors: any[] | null = null;
+
+  @Output() valueChange = new EventEmitter<string>();
+
+  onChange(event: any) {
+    this.valueChange.emit(event.target.value);
+  }
 
 }

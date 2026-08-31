@@ -1,2 +1,41 @@
 <h2>Currency Convertor</h2>
 <p>Use the form below to view the current exchange rate between a range of currencies</p>
+<form (submit)="onSubmit($event)">
+    <div>
+        <app-select
+            label="From"
+            [value]="currencyForm.from().value()"
+            [options]="currencies()"
+            [errors]="currencyForm.from().errors()"
+            (valueChange)="handleChange('from', $event)"
+        ></app-select>
+    </div>
+    <div>
+        <app-select
+            label="To"
+            [value]="currencyForm.to().value()"
+            [options]="currencies()"
+            [errors]="currencyForm.to().errors()"
+            (valueChange)="handleChange('to', $event)"
+        ></app-select>
+    </div>
+    <div>
+        <app-input
+            label="Amount"
+            [value]="currencyForm.amount().value()"
+            [errors]="currencyForm.amount().errors()"
+            (valueChange)="handleChange('amount', $event)"
+            (keyDown)="onAmountKeyDown($event)"
+        ></app-input>
+    </div>
+    <div>
+        <app-button
+        [disabled]="currencyForm().invalid() || isSubmitting()"
+        [loading]="isSubmitting()"
+        [loadingText]="'Converting...'"
+        [valueText]="'Convert'"
+        [type]="'submit'"
+        ></app-button>
+    </div>
+
+</form>
