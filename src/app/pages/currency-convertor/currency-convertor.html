@@ -38,11 +38,18 @@
         ></app-button>
     </div>
     <div class="result">
-    @if (convertedAmount()) {
+    @if (convertedAmount() && !isConversionError()) {
         <p>
             The {{ currencyForm().value().amount }} {{ currencyForm().value().from }} converts to {{ convertedAmount() }} {{ currencyForm().value().to }}
         </p>
     }
+    </div>
+    <div class="error">
+        @if (isConversionError() && !convertedAmount()) {
+            <p>
+                There was an error converting your values, apologies for the disruption.
+            </p>
+        }
     </div>
 
 </form>

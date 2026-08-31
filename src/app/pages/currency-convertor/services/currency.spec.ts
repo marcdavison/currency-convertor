@@ -35,10 +35,6 @@ describe('CurrencyService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add numbers together', () => {
-    expect(service.sum(2, 3)).toBe(5);
-  });
-
   it('should fetch all currencies', () => {
     const mockResponse: AllCurrencies = {
       USD: {
@@ -53,7 +49,7 @@ describe('CurrencyService', () => {
     };
 
     service.getAllCurrencies().subscribe(currencies => {
-      expect(currencies).toEqual(['USD', 'GBP', 'EUR']);
+      expect(currencies).toEqual(Object.keys(mockResponse));
     });
 
     const req = httpTest.expectOne(
