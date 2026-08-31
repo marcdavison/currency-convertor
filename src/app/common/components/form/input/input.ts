@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './input.html',
   styleUrl: './input.scss',
 })
-export class Input {
+export class InputEl {
+  @Input() label!: string;
+  @Input() value!: string;
+  @Input() errors: any[] | null = null;
+
+  @Output() valueChange = new EventEmitter<string>();
+  @Output() keyDown = new EventEmitter<any>();
 
 }

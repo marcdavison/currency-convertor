@@ -19,4 +19,13 @@
             (valueChange)="handleChange('to', $event)"
         ></app-select>
     </div>
+    <div>
+        <app-input
+            label="Amount"
+            [value]="currencyForm.amount().value()"
+            [errors]="currencyForm.amount().errors()"
+            (valueChange)="handleChange('amount', $event)"
+            (keyDown)="onAmountKeyDown($event)"
+        ></app-input>
+    </div>
 </form>

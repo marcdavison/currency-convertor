@@ -2,6 +2,7 @@ import { Component, signal, inject, OnInit } from '@angular/core';
 import {form, required, validate, FormField } from '@angular/forms/signals';
 import { CurrencyService } from './services/currency';
 import { SelectEl } from '../../common/components/form/select/select';
+import { InputEl } from '../../common/components/form/input/input';
 
 interface Currency {
   from: string;
@@ -13,7 +14,7 @@ interface Currency {
   selector: 'app-currency-convertor',
   templateUrl: './currency-convertor.html',
   styleUrl: './currency-convertor.scss',
-  imports: [SelectEl]
+  imports: [SelectEl, InputEl]
 })
 
 export class CurrencyConvertor implements OnInit {
@@ -72,5 +73,20 @@ export class CurrencyConvertor implements OnInit {
 
   public handleChange(target: any, e: string) {
     this.currencyModel.update(m => ({ ...m, [target]: e }))
+  }
+
+  /*
+    Function to avoid none non numeric numbers being entered
+    @Input: Keyboard event; @Output Void
+  */
+  public onAmountKeyDown($event: any) {
+    const allowed = ["Backspace", "Delete", "Tab", "Escape", "Enter", "ArrowLeft", "ArrowRight"];
+    if (allowed.includes($event.key)) {
+      return;
+    }
+
+    if (!/^[0-9]/.test($event.key)) {
+      $event.preventDefault();
+    }
   }
 }
