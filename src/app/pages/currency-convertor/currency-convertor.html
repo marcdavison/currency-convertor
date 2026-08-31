@@ -28,4 +28,14 @@
             (keyDown)="onAmountKeyDown($event)"
         ></app-input>
     </div>
+    <div>
+        <app-button
+        [disabled]="currencyForm().invalid() || isSubmitting()"
+        [loading]="isSubmitting()"
+        [loadingText]="'Converting...'"
+        [valueText]="'Convert'"
+        [type]="'submit'"
+        ></app-button>
+    </div>
+
 </form>
