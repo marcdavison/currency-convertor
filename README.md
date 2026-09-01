@@ -54,13 +54,13 @@ ng test --coverage
 Early in the development process I considered the project to be part of a wider application and therefore choose to keep the key elements of the application as separate components, placing these in a common folder.
 
 common/ui/header<br>
-common/ui/footer. 
+common/ui/footer<br>
 
-Then the form elements themselves.
+Then the form elements themselves<br>
 
-common/form/button. 
-common/form/input. 
-common/form/select. 
+common/form/button<br>
+common/form/input<br>
+common/form/select<br>
 
 In taking this decision I could then ensure that the form element components would be both reusable and styled consistently. Adding to this if there were extra form elements to be introduced there would be a common area for these to be contained. Another benefit of this approach is that I can consider the elements to be dumb and without any business logic.
 
@@ -80,4 +80,3 @@ There are a number of areas that I would consider for improvement from both a te
 # Feature
 - A switch button to swop the To and From values around. 
 - The returned currency list could be altered with the most common currencies, USD, EUR and GPB being found at the top of the list. 
-
