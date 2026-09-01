@@ -53,14 +53,14 @@ ng test --coverage
 ## Developer notes
 Early in the development process I considered the project to be part of a wider application and therefore choose to keep the key elements of the application as separate components, placing these in a common folder.
 
-common/ui/header
-common/ui/footer
+common/ui/header<br>
+common/ui/footer. 
 
 Then the form elements themselves.
 
-common/form/button
-common/form/input
-common/form/select
+common/form/button. 
+common/form/input. 
+common/form/select. 
 
 In taking this decision I could then ensure that the form element components would be both reusable and styled consistently. Adding to this if there were extra form elements to be introduced there would be a common area for these to be contained. Another benefit of this approach is that I can consider the elements to be dumb and without any business logic.
 
@@ -70,14 +70,14 @@ From a coding standpoint this does come with some level of scaffolding as I woul
 There are a number of areas that I would consider for improvement from both a technical and feature standpoint.
 
 # Technical
-Introduction of e2e tests using playwright
-API_KEY should be consumed as a secrete within the repo rather
-Ci/Cd pipelines have not bee developed
-Fallback values of the currencies could be created within the app
-To save on the number of requests the available currencies could be stored in local storage after 1 request
-Again to save on the number of requests the conversion rate could be reverse engineered, stored in state and used for later value requests of the same currencues during that particular page load.
+- Introduction of e2e tests using playwright  
+- API_KEY should be consumed as a secrete within the repo rather. 
+- Ci/Cd pipelines have not bee developed. 
+- Fallback values of the currencies could be created within the app. 
+- To save on the number of requests the available currencies could be stored in local storage after 1 request. 
+- Again to save on the number of requests the conversion rate could be reverse engineered, stored in state and used for later value requests of the same currencues during that particular page load. 
 
 # Feature
-A switch button to swop the To and From values around
-The returned currency list could be altered with the most common currencies, USD, EUR and GPB being found at the top of the list.
+- A switch button to swop the To and From values around. 
+- The returned currency list could be altered with the most common currencies, USD, EUR and GPB being found at the top of the list. 
 
