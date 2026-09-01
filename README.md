@@ -53,7 +53,7 @@ ng test --coverage
 ## Developer notes
 Early in the development process I considered the project to be part of a wider application and therefore choose to keep the key elements of the application as separate components, placing these in a common folder.
 
-common/ui/header. 
+common/ui/header<br>
 common/ui/footer. 
 
 Then the form elements themselves.
