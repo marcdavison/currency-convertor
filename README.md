@@ -2,7 +2,7 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
 
-## Download and Intall
+## Download and Install
 In order to down load this project you have already visit this url:
 https://github.com/marcdavison/currency-convertor
 
