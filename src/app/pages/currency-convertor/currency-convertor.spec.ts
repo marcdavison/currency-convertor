@@ -14,11 +14,7 @@ describe('CurrencyConvertor', () => {
 
   beforeEach(async () => {
     currencyServiceMock.getAllCurrencies.mockReturnValue(
-      of({
-        GBP: 'GBP',
-        USD: 'USD',
-        EUR: 'EUR'
-      })
+      of(['GBP', 'USD', 'EUR'])
     );
 
     currencyServiceMock.convertAmount.mockReturnValue(
@@ -102,7 +98,7 @@ describe('CurrencyConvertor', () => {
       expect(convertSpy).not.toHaveBeenCalled();
     });
 
-    it('should not call convertAmount when the form is invalid', () => {
+    it('should HAVE called convertAmount when the form is valid', () => {
       component.handleChange('to', 'USD');
       component.handleChange('from', 'GBP');
       component.handleChange('amount', '100');

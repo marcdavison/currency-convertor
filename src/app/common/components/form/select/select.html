@@ -1,6 +1,6 @@
 <div>
-    <label>{{ label }}</label>
-    <select [value]="value" (change)="onChange($event)" (blur)="blur.emit()">
+    <label [for]=label>{{ label }}</label>
+    <select [id]=label [value]="value" (change)="onChange($event)" (blur)="blur.emit()">
         <option value="">Select a currency</option>
         @for (item of options; track $index) {
         <option [value]="item">{{ item }}</option>
