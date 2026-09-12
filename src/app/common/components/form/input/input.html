@@ -1,6 +1,7 @@
 <div>
-    <label>{{ label }}</label>
+    <label [for]=label>{{ label }}</label>
     <input 
+        [id]=label
         type="text"
         [value]="value"
         (input)="valueChange.emit($event.target.value)"
